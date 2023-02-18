@@ -192,7 +192,7 @@ const
   FPCOperatingSystemAlternative2Names: array[1..2] of shortstring =(
       'bsd', 'linux' // see GetDefaultSrcOS2ForTargetOS
     );
-  FPCProcessorNames: array[1..15] of shortstring =(
+  FPCProcessorNames: array[1..16] of shortstring =(
       'aarch64',
       'arm',
       'avr',
@@ -207,7 +207,8 @@ const
       'sparc',
       'x86_64',
       'xtensa',
-      'wasm32'
+      'wasm32',
+      'loongarch64'
     );
   FPCSyntaxModes: array[1..6] of shortstring = (
     'FPC', 'ObjFPC', 'Delphi', 'TP', 'MacPas', 'ISO'
@@ -3764,6 +3765,8 @@ begin
     Result:=Result+'xtensa'
   else if SysUtils.CompareText(TargetCPU,'wasm32')=0 then
     Result:=Result+'wasm32'
+  else if SysUtils.CompareText(TargetCPU,'loongarch64')=0 then
+    Result:=Result+'loongarch64'
   else
     Result:='fpc';
   Result:=Result+ExeExt;
@@ -3899,6 +3902,11 @@ procedure GetTargetProcessors(const TargetCPU: string; aList: TStrings);
     aList.Add('lx6');
   end;
 
+  procedure LoongArch;
+  begin
+    aList.Add('loongarch64');
+  end;
+
 begin
   case TargetCPU of
     'arm'    : Arm;
@@ -3915,6 +3923,7 @@ begin
     'aarch64'  : ;
     'xtensa' : Xtensa;
     'wasm32' : ;
+    'loongarch64'  : LoongArch;
   end;
 end;
 

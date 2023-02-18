@@ -141,7 +141,7 @@ end;
 
 procedure CheckFPCMake;
 const
-  LastTarget = 'aarch64-darwin';
+  LastTarget = 'loongarch64-linux';
 var
   FPCMake: String;
   Lines: TStringList;

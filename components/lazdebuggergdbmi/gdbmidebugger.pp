@@ -1824,7 +1824,7 @@ begin
   //'sparc', 'arm', 'xtensa', 'wasm32'
   Result := 4;
   lcCpu := LowerCase(CpuName);
-  if (lcCpu='ia64') or (lcCpu='x86_64') or (lcCpu='aarch64') or (lcCpu='powerpc64')
+  if (lcCpu='ia64') or (lcCpu='x86_64') or (lcCpu='aarch64') or (lcCpu='powerpc64') or (lcCpu='loongarch64')
   then Result := 8;
   if (lcCpu='avr')
   then Result := 2;
@@ -2653,7 +2653,8 @@ begin
     'pei-arm-big',
     'elf64-littleaarch64',
     'elf64-bigaarch64',
-    'elf32-avr'
+    'elf32-avr',
+    'elf64-loongarch'
   ], True, False) of
     0..3: TargetInfo^.TargetCPU := 'x86';
     4: TargetInfo^.TargetCPU := 'x86_64'; //TODO: should we check, PtrSize must be 8, but what if not?
@@ -2703,6 +2704,9 @@ begin
     12: begin
       TargetInfo^.TargetCPU := 'avr';
     end;
+    13: begin
+      TargetInfo^.TargetCPU := 'loongarch64';
+    end;
   else
     // Unknown filetype, use GDB cpu
     DebugLn(DBG_WARNINGS, '[WARNING] [Debugger.TargetInfo] Unknown FileType: %s, using GDB cpu', [AFileType]);
@@ -2719,7 +2723,7 @@ begin
   case StringCase(TargetInfo^.TargetCPU, [
     'x86', 'i386', 'i486', 'i586', 'i686',
     'ia64', 'x86_64', 'powerpc', 'powerpc64',
-    'sparc', 'arm', 'aarch64', 'avr'
+    'sparc', 'arm', 'aarch64', 'avr', 'loongarch64'
   ], True, False) of
     0..4: begin // x86
       TargetInfo^.TargetRegisters[r0] := '$eax';
@@ -2784,6 +2788,11 @@ begin
       TargetInfo^.TargetRegisters[rBreakErrNo] := '$r22+$r23*256+$r24*65536+$r25*16777216';
       TargetInfo^.TargetRegisters[r1] := '0';
       TargetInfo^.TargetRegisters[r2] := '0';
+    end;
+    13: begin // loongarch64
+      TargetInfo^.TargetRegisters[r0] := '$r4';
+      TargetInfo^.TargetRegisters[r1] := '$r5';
+      TargetInfo^.TargetRegisters[r2] := '$r6';
     end;
   else
     TargetInfo^.TargetRegisters[r0] := '';
