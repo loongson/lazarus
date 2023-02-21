@@ -22,7 +22,7 @@ unit Printers;
 interface
 
 uses
-  {$IF FPC_FULLVERSION >= 30300}
+  {$IF FPC_FULLVERSION >= 30302}
   System.UITypes,
   {$ENDIF}
   Classes, SysUtils,
@@ -32,7 +32,7 @@ uses
   LCLProc, Graphics;
 
 type
-  {$IF FPC_FULLVERSION >= 30300}
+  {$IF FPC_FULLVERSION >= 30302}
   TPrinterOrientation = System.UITypes.TPrinterOrientation;
   TPrinterCapability = System.UITypes.TPrinterCapability;
   TPrinterCapabilities = System.UITypes.TPrinterCapabilities;
@@ -44,7 +44,7 @@ type
   TPrinterState       = (psNoDefine,psReady,psPrinting,psStopped);
   TPrinterType        = (ptLocal,ptNetWork);
 
-{$IF FPC_FULLVERSION >= 30300}
+{$IF FPC_FULLVERSION >= 30302}
 const
   poPortrait = System.UITypes.poPortrait;
   poLandscape = System.UITypes.poLandscape;

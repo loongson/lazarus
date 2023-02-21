@@ -26,7 +26,7 @@ unit TAChartUtils;
 interface
 
 uses
-  {$IF FPC_FULLVERSION>30300}
+  {$IF FPC_FULLVERSION>30302}
   System.UITypes,
   {$ENDIF}
   Classes, Math, Types, SysUtils;
@@ -50,7 +50,7 @@ type
   EListenerError = class(EChartError);
   EDrawDataError = class(EChartError);
 
-  {$IF FPC_FULLVERSION>30300}
+  {$IF FPC_FULLVERSION>30302}
   TChartColor = TColor;
   TChartFontStyle = TFontStyle;
   TChartFontStyles = TFontStyles;

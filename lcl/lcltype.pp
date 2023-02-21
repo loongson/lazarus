@@ -1426,7 +1426,7 @@ const
 //------------
 // Font Styles
 //------------
-{$if FPC_FULLVERSION >= 30300}
+{$if FPC_FULLVERSION >= 30302}
   LF_FULLFACESIZE = System.UITypes.LF_FULLFACESIZE;
   LF_FACESIZE = System.UITypes.LF_FACESIZE;
 {$ELSE}
