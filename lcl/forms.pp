@@ -67,13 +67,13 @@ type
     );
 
   TWindowState = (wsNormal, wsMinimized, wsMaximized, wsFullScreen);
-  {$IF FPC_FULLVERSION >= 30300}
+  {$IF FPC_FULLVERSION >= 30302}
   TCloseAction = System.UITypes.TCloseAction;
   {$ELSE}
   TCloseAction = (caNone, caHide, caFree, caMinimize);
   {$ENDIF}
 
-{$IF FPC_FULLVERSION >= 30300}
+{$IF FPC_FULLVERSION >= 30302}
 const
   caNone = System.UITypes.caNone;
   caHide = System.UITypes.caHide;

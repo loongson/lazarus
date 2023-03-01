@@ -185,11 +185,12 @@ type
           cpu_riscv32,                  { 19 }
           cpu_riscv64,                  { 20 }
           cpu_xtensa,                   { 21 }
-          cpu_z80                       { 22 }
+          cpu_z80,                      { 22 }
+          cpu_loongarch64               { 23 }
     );
 
 const
-  PPU_CPUNames : array[tsystemcpu] of string[9]=
+  PPU_CPUNames : array[tsystemcpu] of string[11]=
     ('none',
      'i386',
      'm68k',
@@ -212,7 +213,8 @@ const
      'riscv32',
      'riscv64',
      'xtensa',
-     'z80'
+     'z80',
+     'loongarch64'
      );
 
 // from ppu.pas
@@ -242,7 +244,8 @@ const
     { 19 } 32 {'riscv32'},
     { 20 } 64 {'riscv64'},
     { 21 } 32 {'xtensa'},
-    { 22 } 16 {'z80'}
+    { 22 } 16 {'z80'},
+    { 23 } 64 {'loongarch64'}
     );
   CpuAluBitSize : array[tsystemcpu] of longint =
     (
@@ -268,7 +271,8 @@ const
     { 19 } 32 {'riscv32'},
     { 20 } 64 {'riscv64'},
     { 21 } 32 {'xtensa'},
-    { 22 }  8 {'z80'}
+    { 22 }  8 {'z80'},
+    { 23 } 64 {'loongarch64'}
     );
 
 type
@@ -912,7 +916,8 @@ type
         system_aarch64_ios,        { 86 }
         system_x86_64_iphonesim,   { 87 }
         system_aarch64_win64,      { 107 }
-        system_aarch64_darwin      { 111 }
+        system_aarch64_darwin,     { 111 }
+        system_loongarch64_linux   { 112 }
       );
 const
   // taken form ppudump.pp
@@ -1006,7 +1011,8 @@ const
   { 86 }  'iOS-AArch64',
   { 87 }  'iPhoneSim-x86-64',
   { 107 }  'Win64-AArch64',
-  { 111 }  'Darwin-AArch64'
+  { 111 }  'Darwin-AArch64',
+  { 112 }  'Linux-LoongArch'
   );
 begin
   if w<=ord(high(ttarget)) then

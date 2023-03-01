@@ -1122,6 +1122,7 @@ begin
       Add('powerpc64');
       Add('sparc');
       Add('x86_64');
+      Add('loongarch64');
     end;
     ItemIndex:=0;
   end;
